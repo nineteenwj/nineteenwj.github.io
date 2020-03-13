@@ -107,9 +107,7 @@ categories: 不作恶 网站搭建
 
    启动之后，浏览器中打开地址 *localhost*，见下：
 
-   
-
-      ![html](/assets/posts/Win10下部署Apache+PHP环境/html.png)
+   ![html](../assets/posts/Win10下部署Apache+PHP环境/html.png)
 
    
 
@@ -121,14 +119,13 @@ categories: 不作恶 网站搭建
    <Directory "${SRVROOT}/htdocs">
    ```
 
-   > NOTE：
+   > NOTE：此网页在Apache默认根目录路径 ***D:\Apache24\htdocs\index.html***
    >
-   > 此网页在Apache默认根目录路径下：***D:\Apache24\htdocs\index.html***
-   >
-   > 默认页面是html，要支持打开php需要在配置文件中新增php的支持，**Apache安装&配置** 一节中已经添加。（**AddType**和**DirectoryIndex**）
 
 
 2. 支持PHP
+
+    Apache默认支持html，需要在配置文件httpd.conf中对PHP进行设置，在**Apache安装&配置** 一节中已经添加。（**AddType**和**DirectoryIndex**）。
 
     将D:\Apache24\htdocs\index.html 改为index.php，并改动其内容
 
@@ -136,7 +133,7 @@ categories: 不作恶 网站搭建
     <?php echo "hello world"; ?>
     ```
 
-    浏览器上打开localhost正常情况下，会显示hello word字样，但有可能报如下错误：
+    浏览器上打开localhost正常情况下，会显示hello word字样，但有可能有如下错误：
 
     ```
     not function curl_init php        
@@ -148,9 +145,7 @@ categories: 不作恶 网站搭建
 
     restart Apache，打开 *http://localhost*
 
-    
-
-      ![php](/assets/posts/Win10下部署Apache+PHP环境/php.png)
+    ![php](../assets/posts/Win10下部署Apache+PHP环境/php.png)
 
     
 
