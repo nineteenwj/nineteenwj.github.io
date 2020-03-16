@@ -107,7 +107,7 @@ categories: 不作恶 网站搭建
 
    启动之后，浏览器中打开地址 *localhost*，见下：
 
-   ![html](../assets/posts/Win10下部署Apache+PHP环境/html.png)
+![html](../assets/posts/Win10下部署Apache+PHP环境/html.png)
 
    
 
@@ -120,7 +120,6 @@ categories: 不作恶 网站搭建
    ```
 
    > NOTE：此网页在Apache默认根目录路径 ***D:\Apache24\htdocs\index.html***
-   >
 
 
 2. 支持PHP
@@ -139,24 +138,25 @@ categories: 不作恶 网站搭建
     not function curl_init php        
     ```
 
-    这是因为Apache没有找到对应的php curl导致，在D:/php目录下，找到**lib32.dll**, **libssh2.dll**, **ssleay32.dll**，复制到D:/Apache/bin/下。
+    这是因为Apache没有找到对应的php curl导致，在D:/php目录下，找到**libeay32.dll**, **libssh2.dll**, **ssleay32.dll**，复制到D:/Apache/bin/下。
 
     > PHP在Apache上运行，Apache查找的库路径是<apache dir>，而非<php dir>
 
     restart Apache，打开 *http://localhost*
 
-    ![php](../assets/posts/Win10下部署Apache+PHP环境/php.png)
+![php](../assets/posts/Win10下部署Apache+PHP环境/php.png)
 
-    
+​    
 
     如果需要部署自己的网页，更改DocumentRoot的值即可，例如：
-
+    
     ```shell
     DocumentRoot "D:/www"
     <Directory "D:/www">
     ```
 
    
+
 
 
 至此，Apache+PHP的部署已全部完成。
