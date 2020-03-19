@@ -1,17 +1,19 @@
 ---
 layout: post
-title:  "Win10下部署Apache+PHP环境"
+title:  "Win10下部署Apache+PHP+MySQL环境"
 date:   2020-03-12 13:22
 categories: 不作恶 网站搭建
 ---
 
-本文介绍Apache+PHP的安装与部署。
+本文介绍Apache+PHP+MySQL的安装与部署。
 
 > OS：Windows10
 >
 > Apache：2.4.41（httpd-2.4.41-win64-VS16）
 >
 > PHP：5.6.9（php-5.6.9-Win32-VC11-x64）
+>
+> MySQL：8.0.17（mysql-installer-community-8.0.17.0）
 
 # PHP安装&配置
 
@@ -25,10 +27,8 @@ categories: 不作恶 网站搭建
    # 修改文件 E:/php5/php.ini
    # 设置库路径
    extension_dir = "D:/php5/ext"
-   # 根据自己的需求，添加用到的库，通常会用到curl，mysql,mbstring
+   # 根据自己的需求，添加用到的库，通常会用到curl,mysql,mbstring, mysql下面第三节再讲
    extension=php_mbstring.dll
-   extension=php_mysql.dll
-   extension=php_mysqli.dll
    extension=php_curl.dll
    ```
 
@@ -97,6 +97,68 @@ categories: 不作恶 网站搭建
    httpd -k stop
    ```
 
+# MySQL安装&配置
+
+1. 安装
+
+   双击安装程序**mysql-installer-community-8.0.17.0.msi**，一路向下，MySQL的安装包中集成了很多功能，这里只需选择MySQL server安装即可。
+
+2. 配置
+
+   **配置系统环境变量**
+
+   在系统环境变量中加入变量MySQL的安装路径：
+
+   |    变量    |                   值                    |
+   | :--------: | :-------------------------------------: |
+   | MYSQL_HOME | C:\Program Files\MySQL\MySQL Server 8.0 |
+
+   
+
+   再在变量**Path**中加入MySQL的bin文件路径
+
+   ```
+   %MYSQL_HOME%\bin
+   ```
+
+   **修改php配置文件**
+
+   在php.ini中加入MySQL的相关配置
+
+   ```shell
+   # 修改文件 E:/php5/php.ini
+   # 添加mysql库
+   extension=php_mysql.dll
+   extension=php_mysqli.dll
+   extension=php_pdo_mysql.dll
+   ```
+
+   **修改MySQL配置文件**
+
+   PHP5.7连MySQL8.0会因为密码机制问题报错，可以在配置文件my.ini中更改认证的密码机制 或者命令更改登录用户的认证机制
+
+   ***配置文件中更改认证机制***
+
+   my.ini通常的存放地址为 *C:\ProgramData\MySQL\MySQL Server 8.0*
+
+   ```shell
+   -default_authentication_plugin=caching_sha2_password
+   +default_authentication_plugin=mysql_native_password
+   ```
+
+   ***更改已有账户的认证设置***
+
+   ```mysql
+   ALTER USER 'native'@'localhost' IDENTIFIED WITH mysql_native_password BY 'new_password';
+   ```
+
+   或
+
+   ```mysql
+   ALTER USER 'native'@'localhost' IDENTIFIED WITH mysql_native_password;
+   ALTER USER USER() IDENTIFIED BY 'new_password';
+   ```
+
 # 运行Apache
 
 1. 启动Apache
@@ -107,7 +169,7 @@ categories: 不作恶 网站搭建
 
    启动之后，浏览器中打开地址 *localhost*，见下：
 
-![html](../assets/posts/Win10下部署Apache+PHP环境/html.png)
+   ![html](../assets/posts/Win10下部署Apache+PHP环境/html.png)
 
    
 
@@ -118,6 +180,8 @@ categories: 不作恶 网站搭建
    DocumentRoot "${SRVROOT}/htdocs"
    <Directory "${SRVROOT}/htdocs">
    ```
+
+   
 
    > NOTE：此网页在Apache默认根目录路径 ***D:\Apache24\htdocs\index.html***
 
@@ -144,19 +208,18 @@ categories: 不作恶 网站搭建
 
     restart Apache，打开 *http://localhost*
 
-![php](../assets/posts/Win10下部署Apache+PHP环境/php.png)
+    ![php](../assets/posts/Win10下部署Apache+PHP环境/php.png)
 
-​    
+    
 
     如果需要部署自己的网页，更改DocumentRoot的值即可，例如：
-    
+
     ```shell
     DocumentRoot "D:/www"
     <Directory "D:/www">
     ```
 
-   
+  
 
 
-
-至此，Apache+PHP的部署已全部完成。
+至此，Apache+PHP+MySQL的部署已全部完成。
