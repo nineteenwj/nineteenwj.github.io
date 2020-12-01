@@ -6,9 +6,7 @@ categories: 不作恶 网站搭建
 
 ---
 
-# macOS系统Apache配置虚拟主机vhost
-
-使用Apache来配置虚拟主机，基于IP、主机名或端口号，可以做到在单一系统上运行多个网站。
+使用Apache来配置虚拟主机，基于IP、主机名或端口号，可以做到在单一服务器上运行多个网站。
 
 1. 基于IP地址：一台服务器拥有多个IP地址，当用户访问不同IP地址时显示不同的网站页面。
 2. 基于名称：Apache服务程序自动识别来源主机名或域名然后跳转到指定的网站。
@@ -18,7 +16,7 @@ categories: 不作恶 网站搭建
 
 ## 系统环境
 
-> 操作系统：macOS Cotilina 10.15.7
+> 操作系统：macOS Catalina 10.15.7
 >
 > web服务器： Apache 2.4
 >
@@ -28,7 +26,7 @@ categories: 不作恶 网站搭建
 
 ## 配置Apache
 
-1. 打开httpd.conf的配置文件，做如下修改
+### 更改httpd.conf
 
 ``` shell
 # /etc/apache2/httpd.conf
@@ -39,7 +37,7 @@ Include /private/etc/apache2/extra/httpd-vhosts.conf
 
 ```
 
-2. 更改httpd-vhosts.conf
+### 更改httpd-vhosts.conf
 
 ```shell
 # /etc/apache2/extra/httpd.conf
@@ -90,11 +88,11 @@ Include /private/etc/apache2/extra/httpd-vhosts.conf
 > - ErrorLog: 用户日志文件（可选，如果不需要，则去掉该行）
 > - CustomLog: 错误日志（可选，如果不需要，则去掉该行）
 
-3. 设置访问限制
+### 设置访问限制
 
-   httpd-vhosts.conf中将访问限制打开，但不能让用户无限制访问网站，因此需要使用.htaccess限制访问。
+httpd-vhosts.conf中将访问限制打开，但不能让用户无限制访问网站，因此需要使用.htaccess限制访问。
 
-   网站路径下创建.htaccess文件，见下
+网站路径下创建.htaccess文件，见下
 
 ```shell
 # /Users/My/Workspace/www/tp/public/.htaccess
@@ -108,7 +106,7 @@ Include /private/etc/apache2/extra/httpd-vhosts.conf
 </IfModule>
 ```
 
-
+### 测试
 
 配置完成后，重启apache，浏览器中输入 http://127.0.0.1，则将打开网站入口页面，如果访问的路径为非法，例如 http://127.0.0.1/home，则会跳转到404.html页面
 
