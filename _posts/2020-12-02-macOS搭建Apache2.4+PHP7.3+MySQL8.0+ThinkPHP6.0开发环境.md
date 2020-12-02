@@ -133,7 +133,7 @@ http://localhost:8000/
 
 正常情况下，会显示以下内容
 
-> # :)
+> :)
 >
 > ThinkPHP V6.0.5
 > 14载初心不改 - 你值得信赖的PHP框架
@@ -154,7 +154,7 @@ Apache可以直接跑ThinkPHP，但不够灵活，可将Apache配置成虚拟主
 
 ### php配置
 
-1. 更改配置文件
+**更改配置文件**
 
 ```shell
 # /etc/apache2/httpd.conf
@@ -162,9 +162,9 @@ Apache可以直接跑ThinkPHP，但不够灵活，可将Apache配置成虚拟主
 LoadModule php7_module libexec/apache2/libphp7.so
 ```
 
-2. pdo_mysql
+**pdo_mysql**
 
-   php使用macOS Catalina自带的php7.3.11(cli)。各种教程里都提到需要打开php.ini中的extension=pdo_mysql，但macOS里无需做这一步，如果打开，反而会报如下错误：
+php使用macOS Catalina自带的php7.3.11(cli)。各种教程里都提到需要打开php.ini中的extension=pdo_mysql，但macOS里无需做这一步，如果打开，反而会报如下错误：
 
 ```shell
 PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_mysql' (tried: /usr/lib/php/extensions/no-debug-non-zts-20180731/pdo_mysql (dlopen(/usr/lib/php/extensions/no-debug-non-zts-20180731/pdo_mysql, 0x0009): dlopen(): file not found: /usr/lib/php/extensions/no-debug-non-zts-20180731/pdo_mysql), /usr/lib/php/extensions/no-debug-non-zts-20180731/pdo_mysql.so (dlopen(/usr/lib/php/extensions/no-debug-non-zts-20180731/pdo_mysql.so, 0x0009): dlopen(): file not found: /usr/lib/php/extensions/no-debug-non-zts-20180731/pdo_mysql.so)) in Unknown on line 0
@@ -219,9 +219,7 @@ mysql> select host,user,plugin from mysql.user;
 
 > NOTE：如果在开发或者配置过程中报找不到mysql头文件，可以将mysql安装目录中的头文件软链接到系统路径中。
 >
-> ```shell
 > ln -s /usr/local/mysql/include/* /usr/local/include/
-> ```
 
 #### 配置ThinkPHP 数据库设置
 
@@ -249,7 +247,7 @@ default_lang = zh-cn
 
 配置完成后，重起apache服务，在服务器中输入打开http://127.0.0.1即可打开thinkphp默认页面。
 
-> # :)
+> :)
 >
 > ThinkPHP V6.0.5
 > 14载初心不改 - 你值得信赖的PHP框架
@@ -264,7 +262,7 @@ default_lang = zh-cn
 
 这里介绍一种简单的使用Apache启动ThinkPHP的方式。
 
-1. 更改apahce配置文件
+**更改apahce配置文件**
 
 ```shell
 # /etc/apache2/httpd.conf
@@ -273,17 +271,17 @@ DocumentRoot "/Users/antiwey/Workspace/Develop/www/tp/public"
 <Directory "/Users/antiwey/Workspace/Develop/www/tp/public">
 ```
 
-2. 重启Apache
+**重启Apache**
 
 ```shell
 sudo apachectl restart
 ```
 
-3. 打开页面
+**打开页面**
 
 ​      浏览器地址栏输入 http://localhost，得到和之前测试thinkphp一样的内容
 
-> # :)
+> :)
 >
 > ThinkPHP V6.0.5
 > 14载初心不改 - 你值得信赖的PHP框架
