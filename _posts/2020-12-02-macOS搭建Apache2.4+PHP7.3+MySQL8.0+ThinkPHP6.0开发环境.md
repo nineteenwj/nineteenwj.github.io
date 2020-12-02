@@ -11,9 +11,9 @@ categories: 不作恶 网站搭建
 
 windows上如何搭建参见[《Win10下部署Apache+PHP+MySQL环境》](https://nineteenwj.github.io/archivers/Win10%E4%B8%8B%E9%83%A8%E7%BD%B2Apache+PHP+MySQL%E7%8E%AF%E5%A2%83)。
 
-## 环境要求
+# 环境要求
 
-### 开发环境
+## 开发环境
 
 > 操作系统： macOS Cotalina 10.15.7
 >
@@ -25,13 +25,13 @@ windows上如何搭建参见[《Win10下部署Apache+PHP+MySQL环境》](https:/
 >
 > web框架：ThinkPHP 6.0
 
-### 工具安装
+## 工具安装
 
-#### Apache和PHP
+### Apache和PHP
 
 使用的操作系统是macOS Catalina 10.15.7，自带Apache 2.4 和PHP 7.3.11
 
-##### 测试Apache运行
+**测试Apache运行**
 
 Terminal中执行指令
 
@@ -62,7 +62,7 @@ sudo apachectl stop
 sudo apachectl -v
 ```
 
-#### MySQL 8.0
+### MySQL 8.0
 
 可以选择直接到官网下载安装包，或是用brew 安装，可先用brew 查看哪些版本可用
 
@@ -77,9 +77,9 @@ mysql-client               mysql-search-replace
 
 列表中并没有Mysql 8.0.16，直接在[官网](https://dev.mysql.com/downloads/mysql/)下载dmg安装文件，点击安装。
 
-#### ThinkPHP 6.0
+### ThinkPHP 6.0
 
-##### Composer下载及安装
+**Composer下载及安装**
 
 ThinkPHP 6.0的安装及使用需要用到composer，参考ThinkPHP [官方指导文档](https://www.kancloud.cn/manual/thinkphp6_0/1037481)。
 
@@ -105,7 +105,7 @@ composer selfupdate
 
 或者在[官方国内镜像](https://www.phpcomposer.com/)下载并覆盖系统中的composer程序。
 
-##### ThinkPHP 6.0 安装
+**ThinkPHP 6.0 安装**
 
 执行以下命令:
 
@@ -117,7 +117,7 @@ composer create-project topthink/think tp
 
 详细的安装教程参考[官方文档](https://www.kancloud.cn/manual/thinkphp6_0/1037481)
 
-##### 测试ThinkPHP的运行
+**测试ThinkPHP的运行**
 
 在thinkphp的根目录中执行指令
 
@@ -142,17 +142,17 @@ http://localhost:8000/
 >
 > [官方教程系列](https://e.topthink.com/api/go/ed141c5b8eca350ce)[官方应用市场](https://e.topthink.com/api/go/ec6544b97d9c94a40)[统一API调用服务](https://e.topthink.com/api/go/e7e1354fa534b4eaa)
 
-## 服务配置
+# 服务配置
 
 Apache可以直接跑ThinkPHP，但不够灵活，可将Apache配置成虚拟主机，用以配合ThinkPHP 6.0的多App方案，从而达到一个服务器管理多个网站的目的。
 
-> Apache直接启动ThinkPHP的步骤点击这里
+> Apache直接启动ThinkPHP的见文章最末“Apache直接启动ThinkPHP”。
 
-### Apache配置虚拟主机
+## Apache配置虚拟主机
 
 使用Apache来配置虚拟主机参见[《macOS系统Apache配置虚拟主机vhost》](https://nineteenwj.github.io/archivers/macOS%E7%B3%BB%E7%BB%9FApache%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BAvhost)。
 
-### php配置
+## php配置
 
 **更改配置文件**
 
@@ -172,9 +172,9 @@ PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_mysql' (tried: /u
 
 应该是根本用不上pdo_mysql库。
 
-### MySQL 配置
+## MySQL 配置
 
-#### 更改连接认证方式
+**更改连接认证方式**
 
 如果直接使用php链接mysql，会报如下错误：
 
@@ -221,7 +221,7 @@ mysql> select host,user,plugin from mysql.user;
 >
 > ln -s /usr/local/mysql/include/* /usr/local/include/
 
-#### 配置ThinkPHP 数据库设置
+**配置ThinkPHP 数据库设置**
 
 Thinkphp的环境配置文件在根目录下，将.example.env 改为.env，并匹配数据库信息
 
@@ -258,7 +258,9 @@ default_lang = zh-cn
 
 
 
-## Apache 直接启动 ThinkPHP
+
+
+# Apache 直接启动 ThinkPHP
 
 这里介绍一种简单的使用Apache启动ThinkPHP的方式。
 
