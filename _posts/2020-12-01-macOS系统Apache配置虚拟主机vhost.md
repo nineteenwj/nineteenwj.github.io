@@ -32,9 +32,10 @@ categories: 不作恶 网站搭建
 # /etc/apache2/httpd.conf
 # 1. 启用虚拟主机
 LoadModule vhost_alias_module libexec/apache2/mod_vhost_alias.so
-# 2. 从/etc/apache2/extral/httpd-vhosts.conf文件中导入配置
+# 2. 打开重定向
+LoadModule rewrite_module libexec/apache2/mod_rewrite.so
+# 3. 从/etc/apache2/extral/httpd-vhosts.conf文件中导入配置
 Include /private/etc/apache2/extra/httpd-vhosts.conf 
-
 ```
 
 ### 更改httpd-vhosts.conf

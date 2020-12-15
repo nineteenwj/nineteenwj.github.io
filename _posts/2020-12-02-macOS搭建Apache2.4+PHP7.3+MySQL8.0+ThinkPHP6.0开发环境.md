@@ -258,8 +258,6 @@ default_lang = zh-cn
 
 
 
-
-
 # Apache 直接启动 ThinkPHP
 
 这里介绍一种简单的使用Apache启动ThinkPHP的方式。
@@ -292,3 +290,26 @@ sudo apachectl restart
 >
 > [官方教程系列](https://e.topthink.com/api/go/ed141c5b8eca350ce)[官方应用市场](https://e.topthink.com/api/go/ec6544b97d9c94a40)[统一API调用服务](https://e.topthink.com/api/go/e7e1354fa534b4eaa)
 
+# 注意事项
+
+1. **tp/runtime ** 目录需要设置为可写权限，否则tp框架运行会出错。（包括log写入及session的使用）
+
+2. 如需使用session，需打开middleware.php的session开关
+
+   ```php
+   # /tp/app/middleware.php
+   <?php
+   // 全局中间件定义文件
+   return [
+       // 全局请求缓存
+       // \think\middleware\CheckRequestCache::class,
+       // 多语言加载
+       // \think\middleware\LoadLangPack::class,
+       // Session初始化
+       \think\middleware\SessionInit::class
+   ];
+   ```
+
+   
+
+   
