@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "macOS搭建Apache2.4+PHP7.3+MySQL8.0+ThinkPHP6.0开发环境"
+title:  "macOS搭建Apache2.4 + PHP7.3 + MySQL8.0 + ThinkPHP6.0开发环境"
 date:   2020-12-02 16:33
 categories: 不作恶 网站搭建
 
