@@ -292,7 +292,7 @@ sudo apachectl restart
 
 # 注意事项
 
-1. **tp/runtime ** 目录需要设置为可写权限，否则tp框架运行会出错。（包括log写入及session的使用）
+1. **tp/runtime** 目录需要设置为可写权限，否则tp框架运行会出错。（包括log写入及session的使用）
 
 2. 如需使用session，需打开middleware.php的session开关
 
