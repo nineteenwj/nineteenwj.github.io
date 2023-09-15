@@ -1,8 +1,9 @@
 ---
 layout: post
-title:  "CentOS8服务器上部署Docker memos，Nginx反向代理实现外网访问"
+title:  "CentOS8服务器上部署Docker memos+Nginx反向代理实现外网访问"
 date:   2023-09-15 14:23
 categories: 不作恶 网站搭建
+
 ---
 
 ## 什么是memos
